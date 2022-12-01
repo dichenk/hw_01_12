@@ -1,0 +1,3 @@
+# this file exists so that we know when not to do the
+# stocks_archive_5years.zip → stocks_archive_5years.zip.hdf5 conversion
+fingerprint: 6de8a29a4f6d57a774dae9870a4eac7d

@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "hw-01-12"
+version = "0.1.0"
+description = ""
+authors = ["dichenk <dchenk@gmail.com>"]
+readme = "README.md"
+packages = [{include = "hw_01_12"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+vaex = "^4.15.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
