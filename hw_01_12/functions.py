@@ -1,6 +1,7 @@
 import vaex
 import json
 import hashlib
+import csv
 
 file_path = "stocks_archive_5years.zip"
 sort_columns = "high"
@@ -11,6 +12,7 @@ order = 'AAL'
 date_sec = "2017-08-08"
 name_sec = "PCLN"
 filename = 'dump'
+filename2 = 'dump_2.csv'
 filename_type = '.csv'
 
 ## декоратор для функций, который считает количество вызовов функции (для соответствующего имени файла)
@@ -61,9 +63,25 @@ def select_sorted(sort_columns_f = sort_columns , limit_f = limit, group_by_name
         b = vaex.open(str(cash_fu) + '.hdf5')
         b.export_csv(filename + str(select_sorted.counter) + filename_type)
 
+
 def get_by_date(date = date_sec, name=name_sec):
     ## одна из функций домашней работы
     dv = vaex.from_csv(file_path, convert=True)
     dvv = dv[dv.Name == name]
     dvv = dvv[dv.date == date]
     dvv.export_csv(filename + filename_type)
+
+## Функция к домашке по 25 дню
+def get_by_date2(date = date_sec, name = name_sec):
+
+    a = []
+    with open('all_stocks_5yr.csv', "r") as file:
+        reader = csv.reader(file)
+        print(reader)
+        for i in reader:
+            if i[0] == date and i[6] == name:
+                a.append(i)
+
+    with open(filename2, 'w') as file:
+        writer = csv.writer(file)
+        writer.writerows(a)
